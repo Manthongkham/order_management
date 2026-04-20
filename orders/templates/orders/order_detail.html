@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Order Detail</h1>
+
+<p><strong>Sales Order Number:</strong> {{ order.sales_order_number }}</p>
+<p><strong>Sold To Name:</strong> {{ order.sold_to_name }}</p>
+<p><strong>Ship To Name:</strong> {{ order.ship_to_name }}</p>
+<p><strong>Production Block:</strong> {{ order.production_block }}</p>
+<p><strong>Block Type:</strong> {{ order.block_type }}</p>
+<p><strong>DCO:</strong> {{ order.document_cutoff_date|date:"n/j/Y"|default_if_none:"" }}</p>
+
+<p>
+    <a href="/edit/{{ order.id }}/">Edit</a>
+</p>
+
+<hr>
+
+<h2>Add Note</h2>
+
+<form method="post" action="/order/{{ order.id }}/notes/create/">
+    {% csrf_token %}
+    {{ note_form.as_p }}
+    <button type="submit">Add Note</button>
+</form>
+
+<hr>
+
+<h2>Notes</h2>
+
+{% for note in notes %}
+    <div style="border:1px solid black; padding:10px; margin-bottom:10px;">
+        <strong>{{ note.note_date|date:"n/j/Y g:i A" }}</strong><br>
+        {{ note.note_text }}
+    </div>
+{% empty %}
+    No notes yet.
+{% endfor %}
+
+{% endblock %}

@@ -12,3 +12,12 @@ class Order(models.Model):
 
     def __str__(self):
         return self.sales_order_number
+    
+
+class OrderNote(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='notes')
+    note_date = models.DateTimeField()
+    note_text = models.TextField()
+
+    def __str__(self):
+        return f"{self.order.sales_order_number} - {self.note_date}"
