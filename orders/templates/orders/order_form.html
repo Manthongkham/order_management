@@ -1,0 +1,40 @@
+<h1>Create New Order</h1>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <p>
+        <label for="{{ form.sales_order_number.id_for_label }}">Sales Order Number:</label>
+        {{ form.sales_order_number }}
+    </p>
+
+    <p>
+        <label for="{{ form.sold_to_name.id_for_label }}">Sold To Name:</label>
+        {{ form.sold_to_name }}
+    </p>
+
+    <p>
+        <label for="{{ form.ship_to_name.id_for_label }}">Ship To Name:</label>
+        {{ form.ship_to_name }}
+    </p>
+
+    <p>
+        <label for="{{ form.production_block.id_for_label }}">Production Block:</label>
+        {{ form.production_block }}
+    </p>
+
+    <p>
+        <label for="{{ form.block_type.id_for_label }}">Block Type:</label>
+        {{ form.block_type }}
+    </p>
+
+    <p>
+        <label for="{{ form.document_cutoff_date.id_for_label }}">Document Cut-Off Date:</label>
+        {{ form.document_cutoff_date }}
+    </p>
+
+    <button type="submit">Save</button>
+</form>
+
+<br>
+<a href="/">Back to Orders</a>

@@ -1,0 +1,30 @@
+<h1>Orders</h1>
+
+<a href="/create/">Create New Order</a>
+
+<table border="1">
+    <tr>
+        <th>Sales Order Number</th>
+        <th>Sold To Name</th>
+        <th>Ship To Name</th>
+        <th>Block Type</th>
+        <th>Production Block</th>
+        <th>Document Cut-Off Date</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.sales_order_number }}</td>
+        <td>{{ order.sold_to_name }}</td>
+        <td>{{ order.ship_to_name }}</td>
+        <td>{{ order.block_type|default_if_none:"" }}</td>
+        <td>{{ order.production_block|default_if_none:"" }}</td>
+        <td>{{ order.document_cutoff_date|date:"n/j/Y"|default_if_none:"" }}</td>
+        <td>
+            <a href="/edit/{{ order.id }}/">Edit</a>
+            <a href="/delete/{{ order.id }}/">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
